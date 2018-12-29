@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>TechOps Monitoring Tool</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   </head>
+   <body>
+      <div id="app-2">
+         <nav style="background-color: #131e4c !important">
+            <div class="container nav-wrapper">
+               <a href="" class="brand-logo"><img src="https://qa.beeline.com/qa081/Theme/Images/beeline_pwd_by_pos_rgb_sm_new.png"></a>
+               <ul id="nav-mobile" class="right hide-on-med-and-down">
+                  <li><a v-on:click="getBadgeStatusSuccess()">Success <span class="new badge blue">{{ badgeCountForSuccess }}</span></a></li>
+                  <li><a v-on:click="getBadgeStatusFailed()">Failed <span class="new badge red">{{ badgeCountForFailed }}</span></a></li>
+               </ul>
+            </div>
+         </nav>
+         <div class="container">
+            <h3 style="color: #7ebe33 !important">Utility Processes</h3>
+            <ul class="collapsible" style="box-shadow: none !important">
+               <li>
+                  <div class="collapsible-header"><i class="material-icons" style="color: #7eba2f !important">add</i>Add Filter</div>
+                  <div class="collapsible-body">
+                     <div class="row">
+                        <div class="input-field col s4">
+                           <select>
+                              <option value="" disabled selected>Choose your option</option>
+                              <option v-on:click="getPostsStatusSuccess()">Success</option>
+                              <option v-on:click="getPostsStatusFailed()">Failed</option>
+                           </select>
+                           <label>Status</label>
+                           <a class="waves-effect waves-light btn" v-on:click="getPostsStatusSuccess()">Success</a>
+                           <a class="waves-effect waves-light btn" v-on:click="getPostsStatusFailed()">Failed</a>
+                           <a class="waves-effect waves-light btn" v-on:click="getPosts()">Clear Filter</a>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+            </ul>
+            <br>
+            {% block content %}
+            {% endblock %}
+         </div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
+      <!--  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script> -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <!-- JS for Collapse Section -->
+      <script type="text/javascript">
+         document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.collapsible');
+            var instances = M.Collapsible.init(elems);
+            });
+      </script>
+      <!-- VUEJS for Select Field -->
+      <script type="text/javascript">
+         document.addEventListener('DOMContentLoaded', function() {
+         var elems = document.querySelectorAll('select');
+         var instances = M.FormSelect.init(elems);
+         });
+      </script>
+      <!-- VUEJS for API -->
+      <script type="text/javascript">
+         var app2 = new Vue({
+            el: '#app-2',
+            data: {
+               posts: [],
+               currentPost: {},
+               message: null,
+            },
+            mounted: function() {
+               this.getPosts();
+            },
+            methods: {
+               getPosts: function() {
+                  this.$http.get('/api/posts/')
+                     .then((response) => {
+                        this.posts = response.data;
+                     })
+                     .catch((err) => {
+                        console.log(err);
+                     })
+               },
+               getPostsStatusSuccess: function() {
+                  this.$http.get('/api/statussuccess/')
+                     .then((response) => {
+                        this.posts = response.data;
+                     })
+                     .catch((err) => {
+                        console.log(err);
+                     })
+               },
+               getPostsStatusFailed: function() {
+                  this.$http.get('/api/statusfailed/')
+                     .then((response) => {
+                        this.posts = response.data;
+                     })
+                     .catch((err) => {
+                        console.log(err);
+                     })
+               },
+               getBadgeStatusSuccess: function() {
+                  this.$http.get('/api/badgestatussuccess/')
+                     .then((response) => {
+                        this.posts = response.data;
+                     })
+                     .catch((err) => {
+                        console.log(err);
+                     })
+               },
+               getBadgeStatusFailed: function() {
+                  this.$http.get('/api/badgestatusfailed/')
+                     .then((response) => {
+                        this.posts = response.data;
+                     })
+                     .catch((err) => {
+                        console.log(err);
+                     })
+               }
+            }
+         })
+      </script>     
+   </body>
+</html>
