@@ -24,16 +24,18 @@
                   <div class="collapsible-body">
                      <div class="row">
                         <div class="input-field col s4">
-                           <select>
-                              <option value="" disabled selected>Choose your option</option>
-                              <option v-on:click="getPostsStatusSuccess()">Success</option>
-                              <option v-on:click="getPostsStatusFailed()">Failed</option>
+                           <select v-on:change="getReportByStatus()" v-model="filterStatus">
+                              <option disabled selected>Choose your option</option>
+                              <option>Success</option>
+                              <option>Failed</option>
                            </select>
                            <label>Status</label>
-                           <a class="waves-effect waves-light btn" v-on:click="getPostsStatusSuccess()">Success</a>
-                           <a class="waves-effect waves-light btn" v-on:click="getPostsStatusFailed()">Failed</a>
-                           <a class="waves-effect waves-light btn" v-on:click="getPosts()">Clear Filter</a>
                         </div>
+                     </div>
+                     <div class="row">
+                       <div class="col s12 left">
+                          <a class="waves-effect waves-light btn-small red" v-on:click="getClearFilter()"><i class="material-icons left">remove</i>Clear Filter</a>
+                       </div>
                      </div>
                   </div>
                </li>
@@ -69,6 +71,7 @@
                posts: [],
                currentPost: {},
                message: null,
+               filterStatus: '',
             },
             mounted: function() {
                this.getPosts();
@@ -118,6 +121,20 @@
                      .catch((err) => {
                         console.log(err);
                      })
+               },
+               getReportByStatus: function() {
+                  if(this.filterStatus == "Success")
+                  {
+                     this.getPostsStatusSuccess();
+                  }
+                  else
+                  {
+                     this.getPostsStatusFailed();
+                  }          
+               },
+               getClearFilter: function() {
+                  this.filterStatus = "Choose your option";
+                  this.getPosts();                      
                }
             }
          })
