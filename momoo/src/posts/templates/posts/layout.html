@@ -25,7 +25,7 @@
                      <div class="row">
                         <div class="input-field col s4">
                            <select v-on:change="getReportByStatus()" v-model="filterStatus">
-                              <option disabled selected>Choose your option</option>
+                              <option disabled selected :value="undefined">Choose your option</option>
                               <option>Success</option>
                               <option>Failed</option>
                            </select>
@@ -33,9 +33,9 @@
                         </div>
                      </div>
                      <div class="row">
-                       <div class="col s12 left">
-                          <a class="waves-effect waves-light btn-small red" v-on:click="getClearFilter()"><i class="material-icons left">remove</i>Clear Filter</a>
-                       </div>
+                        <div class="col s12 left">
+                           <a href="" class="waves-effect waves-light btn-small red" v-on:click="getClearFilter()"><i class="material-icons left">remove</i>Clear Filter</a>
+                        </div>
                      </div>
                   </div>
                </li>
@@ -132,8 +132,7 @@
                      this.getPostsStatusFailed();
                   }          
                },
-               getClearFilter: function() {
-                  this.filterStatus = "Choose your option";
+               getClearFilter: function() {                  
                   this.getPosts();                      
                }
             }
