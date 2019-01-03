@@ -10,12 +10,17 @@
          <nav style="background-color: #131e4c !important">
             <div class="container nav-wrapper">
                <a href="" class="brand-logo"><img src="https://qa.beeline.com/qa081/Theme/Images/beeline_pwd_by_pos_rgb_sm_new.png"></a>
+               <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                <ul id="nav-mobile" class="right hide-on-med-and-down">
                   <li><a v-on:click="getBadgeStatusSuccess()">Success <span class="new badge blue">{{ badgeCountForSuccess }}</span></a></li>
                   <li><a v-on:click="getBadgeStatusFailed()">Failed <span class="new badge red">{{ badgeCountForFailed }}</span></a></li>
                </ul>
             </div>
          </nav>
+         <ul class="sidenav" id="mobile-demo">
+            <li><a v-on:click="getBadgeStatusSuccess()">Success <span class="new badge blue">{{ badgeCountForSuccess }}</span></a></li>
+            <li><a v-on:click="getBadgeStatusFailed()">Failed <span class="new badge red">{{ badgeCountForFailed }}</span></a></li>
+         </ul>
          <div class="container">
             <h3 style="color: #7ebe33 !important">Utility Processes</h3>
             <ul class="collapsible" style="box-shadow: none !important">
@@ -33,9 +38,9 @@
                         </div>
                      </div>
                      <div class="row">
-                        <div class="col s12 left">
-                           <a href="" class="waves-effect waves-light btn-small red" v-on:click="getClearFilter()"><i class="material-icons left">remove</i>Clear Filter</a>
-                        </div>
+                       <div class="col s12 left">
+                          <a href="" class="waves-effect waves-light btn-small red" v-on:click="getClearFilter()"><i class="material-icons left">remove</i>Clear Filter</a>
+                       </div>
                      </div>
                   </div>
                </li>
@@ -55,6 +60,11 @@
             var elems = document.querySelectorAll('.collapsible');
             var instances = M.Collapsible.init(elems);
             });
+
+            document.addEventListener('DOMContentLoaded', function() {
+             var elems2 = document.querySelectorAll('.sidenav');
+             var instances = M.Sidenav.init(elems2);
+           });
       </script>
       <!-- VUEJS for Select Field -->
       <script type="text/javascript">
