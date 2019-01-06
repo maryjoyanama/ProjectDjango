@@ -1,33 +1,33 @@
 {% extends 'posts/layout.html' %}
-{% block content %}
-{% verbatim %} 
-<table class="responsive-table highlight">
-   <thead>
-      <tr>
-         <th scope="col">Database Name</th>
-         <th scope="col">Process Name</th>
-         <th scope="col">Last Complete Date</th>
-         <th scope="col">Status</th>
-         <th scope="col">Is Suspended</th>
-         <th scope="col">Interval</th>
-         <th scope="col">Average</th>
-         <th scope="col">Lag In Seconds</th>
-         <th scope="col">Actions</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr v-for="post in posts">
-         <td>{{ post.database_name }}</td>
-         <td>{{ post.process_name }}</td>
-         <td>{{ post.lastcomplete_date }}</td>
-         <td>{{ post.status }}</td>
-         <td>{{ post.issuspended }}</td>
-         <td>{{ post.interval }}</td>
-         <td>{{ post.average }}</td>
-         <td>{{ post.laginseconds }}</td>
-         <td></td>
-      </tr>
-   </tbody>
-</table>
-{% endverbatim %}
-{% endblock %}
+            {% block content %}
+            {% verbatim %} 
+            <table class="responsive-table highlight">
+               <thead>
+                  <tr>
+                     <th scope="col">Database Name</th>
+                     <th scope="col">Process Name</th>
+                     <th scope="col">Last Complete Date</th>
+                     <th scope="col">Status</th>
+                     <th scope="col">Is Suspended</th>
+                     <th scope="col">Interval</th>
+                     <th scope="col">Average</th>
+                     <th scope="col">Lag In Seconds</th>
+                     <th scope="col">Actions</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr v-for="post in posts">
+                     <td>{{ post.database_name }}</td>
+                     <td>{{ post.process_name }}</td>
+                     <td>{{ post.lastcomplete_date }}</td>
+                     <td>{{ post.status }}</td>
+                     <td>{{ post.issuspended }}</td>
+                     <td>{{ post.interval }}</td>
+                     <td>{{ post.average }}</td>
+                     <td>{{ post.laginseconds }}</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            {% endverbatim %}
+            {% endblock %}

@@ -1,0 +1,29 @@
+/* Navbar Style */
+.custom_nav_style
+{
+	background-color: #131e4c !important;
+}
+
+/* Logo Style */
+.custom_logo_style
+{
+	vertical-align: text-bottom !important;
+}
+
+/* Page Header-Text Style "Utility Processes"*/
+.custom_pageheadertext_style
+{
+	color: #7ebe33 !important;
+}
+
+/* Collapsible Style */
+.custom_collapsible_style
+{
+	box-shadow: none !important;
+}
+
+/* Collapsible-Icon Style */
+.custom_collapsibleicon_style
+{
+	color: #7eba2f !important;
+}
